@@ -92,3 +92,17 @@ php artisan make:model Usuario -m
 - `routes` – Arquivos que definem as rotas do sistema.
 
 ---
+
+## 7. Links úteis
+
+## Painel admin
+- [Login](http://127.0.0.1:8000/admin/login)
+- [Home](http://127.0.0.1:8000/admin/home)
+
+## Arraia
+- [Página principal](http://127.0.0.1:8000/)
+- [Barraquinhas](http://127.0.0.1:8000/barraquinhas)
+- [Voluntariado](http://127.0.0.1:8000/voluntariado)
+- [Argola](http://127.0.0.1:8000/argola)
+
+---
