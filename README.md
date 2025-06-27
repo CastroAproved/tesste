@@ -1,16 +1,88 @@
 
 # Projeto - Arraia Digital
 
+## Arquivo iniciar.bat
+### O iniciar.bat so funciona quando você ja editou as informações corretamente no seu .env do banco de daddos e ja rodou as migrations
+
+- Script para inicializar o projeto localmente.
+- Remove arquivos de cache antigos para evitar problemas.
+- Executa comandos Artisan para recachear configurações, rotas e limpar views e eventos.
+- Por fim, inicia o servidor de desenvolvimento do Laravel (`php artisan serve`).
+
+---
+
+## Explicação dos Controllers
+
+### UsuarioController
+
+- Valida dados do login (nome e senha).
+- Verifica usuário e senha no banco.
+- Cria sessão para usuário autenticado.
+- Redireciona para área administrativa (`admin.home`) se login válido.
+- Destrói sessão ao fazer logout e redireciona para página de login.
+
+### VoluntariadoController
+
+- Verifica se usuário está logado para acessar o painel.
+- Lista todos voluntários na view `admin.index`.
+- Exclui voluntário pelo `id`.
+- Valida dados ao criar voluntário (nome, email, animação, etc).
+- Salva voluntário novo no banco.
+- Retorna mensagem JSON de sucesso após cadastro.
+
+---
+
+## Explicação das Rotas
+
+- `/` — mostra a página inicial (`arraia.index`).
+- `/barraquinhas` — exibe as barraquinhas do arraiá (`arraia.barraquinhas`).
+- `/voluntariado` — formulário para se tornar voluntário (`arraia.voluntariado`).
+- `/argola` — jogo da argola digital (`arraia.argola`).
+
+Rotas administrativas (acesso restrito):
+
+- `/admin/login` (GET) — página de login do painel admin.
+- `/admin/login` (POST) — realiza login, valida usuário e senha.
+- `/admin/logout` (POST) — faz logout, destrói sessão.
+- `/admin/home` — painel admin com lista de voluntários.
+- `/admin/voluntariado/{id}` (DELETE) — exclui voluntário pelo ID.
+
+Cadastro voluntário:
+
+- `/voluntariado` (POST) — recebe e salva cadastro do voluntário via formulário.
+
+---
+
+## Explicação das Views Principais
+
+### Frontend
+
+- `arraia.index` — página inicial com contador regressivo para o arraiá.
+- `arraia.barraquinhas` — mostra as barraquinhas do evento com cards e imagens.
+- `arraia.voluntariado` — formulário para inscrição de voluntários com validação.
+- `arraia.argola` — página do jogo da argola com interação via JavaScript.
+
+### Administrativo
+
+- `admin.login.login` — formulário para o usuário entrar no painel.
+- `admin.index` — lista os voluntários cadastrados, com opção de exclusão.
+
+---
+
+## Passo a passo
+
 Passo a passo para configurar e rodar o projeto, além de informações úteis para entender a estrutura.
 
 ---
 
-## 1. Configuração do Banco de Dados (Necessário)
+## 1. Configuração do Banco de Dados
 
 Antes de mais nada, configure o banco de dados para que o projeto funcione corretamente.
 
 1. Abra o arquivo `.env` que está na raiz do projeto (mesma pasta onde fica o arquivo `artisan`).
-2. Encontre as variáveis abaixo e altere para as informações do seu banco MySQL:
+2. Verifique se a porta 3306 corresponde a correta do seu banco de dados.
+4. Se quiser deixar database padrao tambem que é arraiaucb e já esta no .env pode deixar tambêm que com os comandos criara ele automaticamente.
+3. Encontre as variáveis abaixo e altere para as informações do seu banco MySQL:
 
 ```env
 DB_CONNECTION=mysql
